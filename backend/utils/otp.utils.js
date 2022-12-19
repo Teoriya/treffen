@@ -25,13 +25,17 @@ class OtpUtils {
       headers: {
         authorization: fastSMS,
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
       data: data,
     };
     try {
-        
-        if (response.return)
+      const response = await axios(config);
+        if (response.data)//can be a point of failure
+          {  
+            // console.log(response.data); //idk what format the response is in
             return true;
+          }
 
     } catch (error) {
         console.log ("Fast2SMS API error.",error);

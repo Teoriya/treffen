@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
     {
-        phone: { type: String, required: true },
+        phone: { type: String, required: true, unique: true },
         activated: { type: Boolean, required: false, default: false },
     },
     {
