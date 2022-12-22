@@ -12,6 +12,7 @@ const api = axios.create({
 export const sendOtp = async(data) => {return await api.post('/users/send-otp', data)}
 export const verifyOtp = async(data) => api.post('/users/verify-otp', data)
 export const activate = async(data) => api.post('/users/activate', data)
+export const logout = async(data) => api.post('/users/logout',data)
 
 // Interceptors
 api.interceptors.response.use(

@@ -131,6 +131,15 @@ class AuthController {
       return res.status(401).json({ message: "Unauthorized" });
     }
   }
+
+  async logout(req,res){
+    const {refreshToken} = req.cookies
+    await TokenService.deleteToken()
+    res.clearCookie("refreshToken")
+    res.clearCookie("accessToken")
+    res.json({})
+  
+  }
 }
 
 module.exports = new AuthController();

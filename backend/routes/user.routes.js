@@ -7,6 +7,7 @@ router.post('/send-otp', AuthController.sendOtp);
 router.post('/verify-otp', AuthController.verifyOtp);
 router.post('/activate', authMiddleware ,ActivateController.activate);
 router.get('/refresh', AuthController.refresh);
+router.post('/logout', AuthController.logout);
 
 
 module.exports = router;

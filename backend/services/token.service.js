@@ -32,6 +32,15 @@ class TokenService{
             return null;
         }
     }
+
+    async deleteToken(token){
+        try {
+            await TokenModel.deleteOne({token})
+        } catch (err) {
+            console.log(error);//better error handling can be implemented later
+            return null;
+        }
+    }
 }
 
 module.exports = new TokenService();

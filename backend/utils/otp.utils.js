@@ -24,6 +24,7 @@ class OtpUtils {
       url: "https://www.fast2sms.com/dev/bulkV2",
       headers: {
         authorization: fastSMS,
+       "Accept-Encoding": "gzip,deflate,compress" ,//idk why some endcoding issue i guess
         "Content-Type": "application/json",
         Accept: "application/json",
       },
