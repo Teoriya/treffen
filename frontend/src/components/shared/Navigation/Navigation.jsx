@@ -16,12 +16,15 @@ const Navigation = () => {
         marginLeft: '10px',
     };
 
+    const logout = () => {}
+
     return (
         <nav className={`${styles.navbar} container`}>
             <Link style={brandStyle} to="/">
                 <img src="/images/logo.png" alt="logo" />
                 <span style={logoText}>Codershouse</span>
             </Link>
+            <button onClick={logout} className={styles.logout}/>
         </nav>
     );
 };

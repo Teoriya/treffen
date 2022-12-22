@@ -5,6 +5,8 @@ const userSchema = new Schema(
     {
         phone: { type: String, required: true, unique: true },
         activated: { type: Boolean, required: false, default: false },
+        avatar: { type: String, required: false },
+        name: { type: String, required: false },
     },
     {
         timestamps: true,

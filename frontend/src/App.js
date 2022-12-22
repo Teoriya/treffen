@@ -5,8 +5,15 @@ import Navigation from './components/shared/Navigation/Navigation.jsx';
 import Authenticate from './pages/Authenticate/Authenticate';
 import Activate from './pages/Activate/Activate';
 import Rooms from './pages/Rooms/Rooms';
+import { useSelector } from 'react-redux';
+import { useLoadingWithRefresh } from './hooks/useLoadingWithRefresh';
+
 function App() {
+
+  const {loading} = useLoadingWithRefresh()
   return (
+    loading ? <div>Loading...</div>:
+
     <Router>
       <Navigation/>
       <Routes>
@@ -27,23 +34,26 @@ function App() {
 }
 
 const GuestRoutes = () => {
-  let auth = {'token':false}
+  const {auth} = useSelector(state => state.auth)
+
   return(
-      auth.token ? <Navigate to="/rooms"/> : <Outlet/>
+      auth ? <Navigate to="/rooms"/> : <Outlet/>
   )
 }
 
 const SemiProtectedRoutes = () => {
-  let auth = {'token':false}
+  const {auth,user} = useSelector(state => state.auth)
   return(
-      auth.token ? <Navigate to="/rooms"/> : <Outlet/>
+      auth && user.activated ? <Navigate to="/rooms"/> : (auth?<Outlet/>:<Navigate to="/authenticate"/>)
   )
 }
 
 const ProtectedRoutes = () => {
-  let auth = {'token':false}
+  const data = useSelector(state => state.auth)
+  console.log(data)
+  const {auth,user} = data
   return(
-      auth.token ?  <Outlet/>:<Navigate to="/authenticate"/>//activated check also
+    auth && user.activated ?  <Outlet/>:(auth?<Navigate to="/activate"/>:<Navigate to="/authenticate"/>)//activated check also
   )
 }
 export default App;
