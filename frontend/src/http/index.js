@@ -19,7 +19,7 @@ api.interceptors.response.use(
     response => response,
     async error => {
         const originalRequest = error.config
-        console.log(error.response.message)
+        // console.log(error.response.message)
         if (error.response.status === 401 &&error.response.message==="jwt expired" && !originalRequest._retry) {
             originalRequest._retry = true
             try {

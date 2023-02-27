@@ -5,6 +5,7 @@ import Navigation from './components/shared/Navigation/Navigation.jsx';
 import Authenticate from './pages/Authenticate/Authenticate';
 import Activate from './pages/Activate/Activate';
 import Rooms from './pages/Rooms/Rooms';
+import Loader from './components/shared/Loader/Loader';
 import { useSelector } from 'react-redux';
 import { useLoadingWithRefresh } from './hooks/useLoadingWithRefresh';
 
@@ -12,7 +13,7 @@ function App() {
 
   const {loading} = useLoadingWithRefresh()
   return (
-    loading ? <div>Loading...</div>:
+    loading ? <Loader message={"Loading..."}/>:
 
     <Router>
       <Navigation/>
@@ -50,7 +51,7 @@ const SemiProtectedRoutes = () => {
 
 const ProtectedRoutes = () => {
   const data = useSelector(state => state.auth)
-  console.log(data)
+  // console.log(data)
   const {auth,user} = data
   return(
     auth && user.activated ?  <Outlet/>:(auth?<Navigate to="/activate"/>:<Navigate to="/authenticate"/>)//activated check also

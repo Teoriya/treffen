@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../../../components/shared/Card/Card';
+import Loader from '../../../components/shared/Loader/Loader';
 import Button from '../../../components/shared/Button/Button';
 import styles from './StepAvatar.module.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,6 +12,7 @@ const StepAvatar = ({ onNext }) => {
     const dispatch = useDispatch();
     const { name, avatar } = useSelector((state) => state.activate);
     const [image, setImage] = useState('/images/monkey-avatar.png');
+    const [loading, setLoading] = useState(false);
     function captureImage(e) {
         const file = e.target.files[0];
         const reader = new FileReader();
@@ -21,17 +23,24 @@ const StepAvatar = ({ onNext }) => {
         };
     }
     async function submit() {
+        if(!name || !avatar)return;
+        setLoading(true);
         try {
+            
             const { data } = await activate({ name, avatar });
             if (data.auth) {
                 dispatch(setAuth(data));
             }
-            console.log(data);
+            // console.log(data);
         } catch (err) {
             console.log(err);
         }
+        finally{
+            setLoading(false);
+        }
     }
     return (
+        loading?<Loader message={"Activating your account..."} />:
         <>
             <Card title={`Okay, ${name}`} icon="monkey-emoji">
                 <p className={styles.subHeading}>How’s this photo?</p>

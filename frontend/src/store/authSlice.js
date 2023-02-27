@@ -15,10 +15,16 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setAuth: (state, action) => {
+      if(action.payload && action.payload.logout){
+        state.auth = false
+        state.user = null
+        state.otp = null
+      }
+      else {
       const {user} = action.payload
       state.user = user
-      state.auth =  user ? true : false
-      state.otp = null
+      state.auth =  true
+      state.otp = null}
     },
     
     setOtp: (state, action) => {
