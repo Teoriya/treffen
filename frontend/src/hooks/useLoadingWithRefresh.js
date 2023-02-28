@@ -8,7 +8,7 @@ export function useLoadingWithRefresh() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await api.get("/users/refresh");
+        const { data } = await api.get("/users/refresh"); //refresh ke time get errors in console...
         dispatch(setAuth(data));
         setLoading(false);
       } catch (err) {
@@ -16,7 +16,7 @@ export function useLoadingWithRefresh() {
         setLoading(false);
       }
     })();
-    //linting fix below, idk how to use dispatch in dependency array
+    //linting fix below
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

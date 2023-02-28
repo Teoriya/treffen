@@ -32,7 +32,7 @@ class OtpUtils {
     };
     try {
       const response = await axios(config);
-        if (response.data)//can be a point of failure
+        if (response.data && response.data.return)//can be a point of failure
           {  
             // console.log(response.data); //idk what format the response is in
             return true;

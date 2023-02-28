@@ -34,7 +34,7 @@ const Navigation = () => {
     <nav className={`${styles.navbar} container`}>
       <Link style={brandStyle} to="/">
         <img src="/images/logo.png" alt="logo" />
-        <span style={logoText}>Codershouse</span>
+        <span style={logoText}>Treffen</span>
       </Link>
       {auth?<div className={styles.navRight}>
         <h3>{user.name?user.name:""}</h3>
