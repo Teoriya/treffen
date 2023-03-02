@@ -1,7 +1,18 @@
-custom Loader to be implemented everywhere
-access token time to be changed
+Done - 
 phone numbers of all users coming to front end
 fix the the key error in rooms card
+
+Must DO- 
+Enter key implementation
+access token time to be changed
 design the ui for shared code editor+voice
 implememnt the design
 RTC and sockets.io
+work more on responsiveness
+OTP premium - no extra text toggle in environment variable
+
+Maybe -
+custom Loader to be implemented everywhere -- a separate loader on the rooms page 
+a seperate config file for differrent configs like token expiry time, number of digits in otp etc etc
+pfp cropping and shit
+Error Handelling

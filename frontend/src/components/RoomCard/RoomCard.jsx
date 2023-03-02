@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './RoomCard.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const RoomCard = ({ room }) => {
+    const navigate = useNavigate();
+    function goToRoom() {
+        navigate(`/room/${room.id}`);
+    }
     return (
-        <div className={styles.card} key={room.id}>
+        <div className={styles.card} key={room.id} onClick={goToRoom}>
             <h3 className={styles.topic}>{room.topic}</h3>
             <div
                 className={`${styles.speakers} ${
@@ -13,7 +18,7 @@ const RoomCard = ({ room }) => {
                 <div className={styles.avatars}>
                     {room.speakers.map((speaker) => (
                          <img
-                         key={speaker.id}
+                         key={speaker._id}
                          src={speaker.avatar}
                          alt="speaker-avatar"
                      />
@@ -21,7 +26,7 @@ const RoomCard = ({ room }) => {
                 </div>
                 <div className={styles.names}>
                     {room.speakers.map((speaker) => (
-                        <div key={speaker.id} className={styles.nameWrapper}>
+                        <div key={speaker._id} className={styles.nameWrapper}>
                             <span>{speaker.name}</span>
                             <img
                                 src="/images/chat-bubble.png"

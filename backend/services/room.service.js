@@ -16,7 +16,7 @@ class RoomService {
         }
         try {       
             const rooms = await RoomModel.find({roomType:{$in : types}}).populate({path: 'owner'}).populate({path: 'speakers'});
-            console.log(rooms)
+            // console.log(rooms)
             return rooms;
         } catch (error) {
             console.log(error);

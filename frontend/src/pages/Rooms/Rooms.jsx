@@ -11,7 +11,7 @@ const Rooms = () => {
     (async()=>{
       try{
       const {data} = await fetchRooms();
-      console.log(data);
+      // console.log(data);
       setRooms(data);}
       catch(err){
         console.log(err);
