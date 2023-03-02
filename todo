@@ -1,3 +1,7 @@
 custom Loader to be implemented everywhere
 access token time to be changed
 phone numbers of all users coming to front end
+fix the the key error in rooms card
+design the ui for shared code editor+voice
+implememnt the design
+RTC and sockets.io
