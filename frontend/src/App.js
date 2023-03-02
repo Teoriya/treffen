@@ -5,6 +5,7 @@ import Navigation from './components/shared/Navigation/Navigation.jsx';
 import Authenticate from './pages/Authenticate/Authenticate';
 import Activate from './pages/Activate/Activate';
 import Rooms from './pages/Rooms/Rooms';
+import Room from './pages/Room/Room';
 import Loader from './components/shared/Loader/Loader';
 import { useSelector } from 'react-redux';
 import { useLoadingWithRefresh } from './hooks/useLoadingWithRefresh';
@@ -24,7 +25,9 @@ function App() {
         </Route>
         <Route element={<ProtectedRoutes/>}>
           <Route path="/rooms" exact element={<Rooms/>} />
-    
+        </Route>
+        <Route element={<ProtectedRoutes/>}>
+          <Route path="/room/:id" exact element={<Room/>} />
         </Route>
         <Route element={<SemiProtectedRoutes/>}>
           <Route path="/activate" element={<Activate/>}/>

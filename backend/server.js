@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 app.use(express.json({limit:"16mb"}));
 const port = process.env.PORT || 5000;
-const userRouter = require('./routes/user.routes');
+
 
 app.use('/public',express.static('public'))
 
@@ -22,8 +22,10 @@ app.use(cookieParser());
 const dbConnect = require('./utils/db.utils');
 dbConnect();
 
-
+const userRouter = require('./routes/user.routes');
+const roomRouter = require('./routes/room.routes');
 app.use( '/users',userRouter);
+app.use( '/rooms',roomRouter);
 app.get('/',(req,res)=>{
     res.send("Hello World");
 })

@@ -3,7 +3,7 @@ import styles from './RoomCard.module.css';
 
 const RoomCard = ({ room }) => {
     return (
-        <div className={styles.card}>
+        <div className={styles.card} key={room.id}>
             <h3 className={styles.topic}>{room.topic}</h3>
             <div
                 className={`${styles.speakers} ${
