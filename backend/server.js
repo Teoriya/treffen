@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 app.use(express.json({limit:"16mb"}));
 const port = process.env.PORT || 5000;
+const server = require('http').createServer(app);
 
 
 app.use('/public',express.static('public'))
@@ -30,6 +31,7 @@ app.get('/',(req,res)=>{
     res.send("Hello World");
 })
 
-app.listen(port, () => {
+require("./socket")(server);
+server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

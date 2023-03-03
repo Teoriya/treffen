@@ -1,22 +1,31 @@
 Done - 
 phone numbers of all users coming to front end
 fix the the key error in rooms card
+sockets.io
+design the ui for shared code editor+voice - kindoff, aadha adhura
 
 Must DO- 
 Enter key implementation
+react env setup
 access token time to be changed
-design the ui for shared code editor+voice
 implememnt the design
-RTC and sockets.io
-work more on responsiveness
-OTP premium - no extra text toggle in environment variable
+code editor to work with web sockets
+RTC 
+
+
+
 
 Maybe -
+OTP premium - no extra text toggle in environment variable
+Compile the code in editor in C++; 👀
 strict mode issue , check what cleanup/logic is reqd
-custom Loader to be implemented everywhere -- a separate loader on the rooms page 
+same file for ACTIONS ws
+work more on responsiveness
 a seperate config file for differrent configs like token expiry time, number of digits in otp etc etc
+custom Loader to be implemented everywhere -- a separate loader on the rooms page 
+Error Handelling and TOASTS
 pfp cropping and shit
-Error Handelling
 email login / sign in with DC,Google,Github etc
 integrating with DC Voice
 keeping the demerits of rtc in mind, speakers should be connected RTC and listeners through a server
+intervies, code compilation , inteviewee/interviewer
