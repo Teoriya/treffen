@@ -12,7 +12,11 @@ work more on responsiveness
 OTP premium - no extra text toggle in environment variable
 
 Maybe -
+strict mode issue , check what cleanup/logic is reqd
 custom Loader to be implemented everywhere -- a separate loader on the rooms page 
 a seperate config file for differrent configs like token expiry time, number of digits in otp etc etc
 pfp cropping and shit
 Error Handelling
+email login / sign in with DC,Google,Github etc
+integrating with DC Voice
+keeping the demerits of rtc in mind, speakers should be connected RTC and listeners through a server

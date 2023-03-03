@@ -1,32 +1,27 @@
 import React from 'react';
 import styles from './Room.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Card from '../../components/shared/Card/Card';
-import Button from '../../components/shared/Button/Button';
+import { useSelector } from 'react-redux';
+import { useWebRTC } from '../../hooks/useWebRTC';
 
-const Home = () => {
-    const navigator = useNavigate();
-    function startRegister() {
-        // console.log("Button Clicked")
-        navigator('/authenticate');
-    }
+const Room = () => {
+    const { id: roomId } = useParams();
+    const user = useSelector((state) => state.auth.user);
+    const{ clients,provideRef } = useWebRTC(roomId, user);
+            
     return (
         <div className={styles.cardWrapper}>
-            <Card title="Welcome to Treffen!" icon="logo">
-                <p className={styles.text}>
-                    ROOOOOOOOOOOOMMMMMMMMMMMMMMMMMMMMMMM
-                </p>
-                <div>
-                    <Button onClick={startRegister} text="Get Started" />
-                </div>
-                <div className={styles.signinWrapper}>
-                    <span className={styles.hasInvite}>
-                        Have an invite text?
-                    </span>
-                </div>
+            <Card title="All Connected clients" icon="logo">
+                {
+                    clients.map((client) => {
+                        return <div key={client._id}><audio controls autoPlay ref={ (i) => provideRef(i,client._id)} />{client.name}</div>
+                    }
+                    )
+                }
             </Card>
         </div>
     );
 };
 
-export default Home;
+export default Room;

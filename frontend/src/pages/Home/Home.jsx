@@ -5,10 +5,10 @@ import Card from '../../components/shared/Card/Card';
 import Button from '../../components/shared/Button/Button';
 
 const Home = () => {
-    const navigator = useNavigate();
+    const navigatorReact = useNavigate();
     function startRegister() {
         // console.log("Button Clicked")
-        navigator('/authenticate');
+        navigatorReact('/authenticate');
     }
     return (
         <div className={styles.cardWrapper}>
