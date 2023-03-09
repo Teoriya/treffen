@@ -3,19 +3,20 @@ phone numbers of all users coming to front end
 fix the the key error in rooms card
 sockets.io
 design the ui for shared code editor+voice - kindoff, aadha adhura
+RTC 
+implememnt the design
 
 Must DO- 
 Enter key implementation
 react env setup
 access token time to be changed
-implememnt the design
 code editor to work with web sockets
-RTC 
 
 
 
 
 Maybe -
+Replace monkey with initial pfp
 OTP premium - no extra text toggle in environment variable
 Compile the code in editor in C++; 👀
 strict mode issue , check what cleanup/logic is reqd

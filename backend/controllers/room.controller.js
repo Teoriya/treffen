@@ -14,6 +14,14 @@ class RoomController{
         const rooms = await RoomService.fetchRooms('open');
         res.json(rooms.map(room => new RoomDto(room)));
     }
+    async getRoom(req,res){
+        const {roomId} = req.params;
+        if(!roomId){
+            return res.status(400).json({message: 'All Fields are required'});
+        }
+        const room = await RoomService.getRoomById(roomId)
+        res.json(new RoomDto(room));
+    }
 }
 
 module.exports = new RoomController();

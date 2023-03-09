@@ -18,6 +18,7 @@ export const createRoom = async(data) => api.post('/rooms/create',data)
 
 //get requests
 export const fetchRooms = async() => api.get('/rooms/')
+export const getRoom = async(roomId) => api.get(`/rooms/${roomId}`)
 
 // Interceptors
 api.interceptors.response.use(

@@ -23,6 +23,18 @@ class RoomService {
             return null;
         }
     }
+
+    async getRoomById(id){
+        try{
+            const room = RoomModel.findById(id).populate({path: 'owner'}).populate({path: 'speakers'});
+            return room;
+        }
+        catch(error){
+            console.log(error);
+            return null;
+        }
+
+    }
 }
 
 module.exports = new RoomService();

@@ -1,0 +1,46 @@
+.client {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userHead {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #5453e0;
+    position: relative;
+}
+
+.userHead + h4 {
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.userAvatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.clientsList {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
+
+.micBtn {
+    background: #212121;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    box-sizing: content-box;
+    border-radius: 30px;
+    padding: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

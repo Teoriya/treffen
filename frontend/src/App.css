@@ -2,8 +2,16 @@ html {
   
   font-size: 16px;
 }
+
+*::-webkit-scrollbar{
+  display: none;
+}
+
 *{
   box-sizing: border-box;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  
 }
 body,
 h1,

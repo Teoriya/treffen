@@ -1,0 +1,80 @@
+.clientsWrap {
+    background: #1d1d1d;
+    margin-top: 2.25rem;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    min-height: calc(100vh - 157px);
+    padding: 2rem;
+}
+
+.topic {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.actionBtn {
+    background: #262626;
+    outline: none;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border-radius: 20px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.actionBtn:hover {
+    background: #333333;
+}
+
+.actionBtn span {
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+
+.buttonWrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #333333;
+    padding: 10px;
+    border-radius: 20px;
+
+}
+
+.tabButton {
+    width: 90px;
+    height: 30px;
+    background: #262626;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.tabButton:last-child {
+    margin-left: 20px;
+}
+
+.tabButton span {
+    font-weight: bold;
+    color:white;
+}
+
+.active {
+    background: #0077ff;
+}
