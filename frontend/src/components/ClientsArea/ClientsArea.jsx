@@ -8,7 +8,7 @@ const Display = {
     editor:Editor
 }
 
-const ClientArea = ({ clients, room, provideRef, handManualLeave }) => {
+const ClientArea = ({ clients, room, provideRef, handManualLeave ,socketRef}) => {
     const [type,setType] = useState("list");
     const Component = Display[type];
 

@@ -169,5 +169,5 @@ export const useWebRTC = (roomId, user) => {
         audioElements.current[userId] = instance;
     };
 
-    return { clients, provideRef }
+    return { clients, provideRef , socketRef:socket}
 }

@@ -5,6 +5,7 @@
     border-top-left-radius: 20px;
     min-height: calc(100vh - 157px);
     padding: 2rem;
+    padding-bottom: 0;
 }
 
 .topic {

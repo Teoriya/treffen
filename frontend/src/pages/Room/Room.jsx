@@ -12,7 +12,7 @@ const Room = () => {
     const { id: roomId } = useParams();
     const [loading,setLoading] = useState(true);
     const user = useSelector((state) => state.auth.user);
-    const{ clients,provideRef } = useWebRTC(roomId, user);
+    const{ clients,provideRef,socketRef } = useWebRTC(roomId, user);
     const [room, setRoom] = useState(null);
     const navigate = useNavigate();
     const handManualLeave = ()=>{
@@ -36,7 +36,7 @@ const Room = () => {
                     <span>All voice rooms</span>
                 </button>
             </div>
-            <ClientsArea clients={clients} room={room} provideRef={provideRef} handManualLeave={handManualLeave}/>
+            <ClientsArea clients={clients} room={room} provideRef={provideRef} handManualLeave={handManualLeave} socketRef={socketRef}/>
             
         </div>
     );
