@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@codemirror/collab": "^6.0.0",
     "@codemirror/lang-cpp": "^6.0.2",
     "@codemirror/theme-one-dark": "^6.1.1",
     "@reduxjs/toolkit": "^1.9.1",

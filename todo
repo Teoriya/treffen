@@ -30,3 +30,5 @@ email login / sign in with DC,Google,Github etc
 integrating with DC Voice
 keeping the demerits of rtc in mind, speakers should be connected RTC and listeners through a server
 intervies, code compilation , inteviewee/interviewer
+encrypt code data for privacy , maybe
+db persistence of code for each room 
