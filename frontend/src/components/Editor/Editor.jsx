@@ -21,13 +21,11 @@ const Editor = ({ code,setCode }) => {
     useEffect(()=>{
 
         const update  = EditorView.updateListener.of((v) => {
-            userCursor.current = v.state.selection
-            if(v.state.doc!==code){setCode(v.state.doc)}
           });
 
 
         const state = EditorState.create({
-            doc: code,
+            doc: "" ,
             selection:userCursor.current,
             extensions: [EditorView.lineWrapping,basicSetup,oneDark,cpp(),fixedHeightEditor,update,drawSelection({cursorBlinkRate:0})],
           });
@@ -39,7 +37,7 @@ const Editor = ({ code,setCode }) => {
           })
           console.log(editorRef)
         return ()=>editorRef.current.destroy();
-    },[elementRef,code,setCode])
+    },[elementRef])
     return (
         <div ref={elementRef} className={styles.editorWrap}></div>
     )
