@@ -6,24 +6,26 @@ rooms = {};
 
 const codeEditorListeners =  (socket,io) =>{
     socket.on(ACTIONS.FETCH,({roomId})=>{
+        console.log("fetch")
+
         if(!rooms[roomId]){
             rooms[roomId]={
-                doc:(Text.of(cppBoilerPlate)).toString(),
+                doc:(Text.of([cppBoilerPlate])),
                 updates:[],
             };
-        socket.emit(ACTIONS.PULL,{version:rooms[roomId].updates.length,code:rooms[roomId].doc})
+        socket.emit(ACTIONS.PULL,{newVersion:rooms[roomId].updates.length,code:rooms[roomId].doc.toString()})
         }
     })
 
-    socket.on(ACTIONS.PUSH,({version,roomId,updates})=>{
-        if(!rooms[roomId])return console.warn("Invalid Websocket Request : Invalid Roomid");
-        if (rooms[roomId].updates.length() != version) return console.warn("New updates can't sync with authority version");
-        for (let update of updates){
+    socket.on(ACTIONS.PUSH,({version,roomId,newUpdates})=>{
+        if(!rooms[roomId])return console.log("Invalid Websocket Request : Invalid Roomid");
+        if (rooms[roomId].updates.length != version) return console.warn("New updates can't sync with authority version");
+        for (let update of newUpdates){
             let changes = ChangeSet.fromJSON(update.changes)
-            updates.push({changes,clientID:update.clientID})
+            rooms[roomId].updates.push({changes,clientID:update.clientID})
             rooms[roomId].doc = changes.apply(rooms[roomId].doc)
         }
-        io.to(roomId).emit(ACTIONS.SYNC,{version:rooms[roomId].updates.length, updates:rooms[roomId].updates})
+        io.to(roomId).emit(ACTIONS.SYNC,{newVersion:rooms[roomId].updates.length, updates:rooms[roomId].updates})
 
     })
 }
