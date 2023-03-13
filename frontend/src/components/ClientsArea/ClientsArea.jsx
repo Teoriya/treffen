@@ -43,7 +43,7 @@ const ClientArea = ({ clients, room, provideRef, handManualLeave ,socketRef}) =>
                 </div>
             </div>
             
-            <Component clients={clients} provideRef={provideRef}/>
+            <Component clients={clients} provideRef={provideRef} socket={socketRef.current} roomId={room.id}/>
             
 
             
