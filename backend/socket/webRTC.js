@@ -11,7 +11,6 @@ const webRTCListeners =  (socket,io) =>{
             socket.emit(ACTIONS.ADD_PEER,{peerId:clientId,createOffer:true,user:socketUserMap[clientId]})
         })
         socket.join(roomId);
-        console.log((io.sockets.adapter.rooms))
     })
 
     socket.on(ACTIONS.RELAY_ICE,({peerId, icecandidate})=>{

@@ -6,7 +6,7 @@ import { fetchRooms } from '../../http';
 
 const Rooms = () => {
   const [modal,setModal] = useState(false);
-  const [rooms,setRooms] = useState([]);
+  const [rooms,setRooms] = useState(null);
   useEffect(()=>{
     (async()=>{
       try{
@@ -39,7 +39,7 @@ const Rooms = () => {
         </div>
         <div className={styles.roomList}>
           {
-            rooms.map((room)=>(<RoomCard key={room.id} room={room}/>))
+            rooms?(rooms.length>0?rooms.map((room)=>(<RoomCard key={room.id} room={room}/>)):<>No Rooms found. Click Start Room to Create one.</>):<>Loading Rooms</>
           }
 
         </div>

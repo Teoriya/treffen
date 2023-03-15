@@ -23,7 +23,7 @@ const RoomCard = ({ room }) => {
                          key={speaker._id}
                          src={speaker.avatar}
                          alt="speaker-avatar"
-                     />:<Avatar name={speaker.name } className={styles.avatarImg} size="40px" round="20px"/>
+                     />:<Avatar name={speaker.name } className={styles.avatarImg} size="40px" round="20px" key={speaker._id}/>
                      //The react avatar would break on multiple speakers keep that in mind :P
                     ))}
                 </div>
