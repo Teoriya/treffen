@@ -7,10 +7,10 @@ RTC
 implememnt the design
 code editor to work with web sockets
 Enter key implementation
-
-Must DO- 
 react env setup
 access token time to be changed
+
+Must DO- 
 Replace monkey with initial pfp
 custom Loader to be implemented everywhere -- a separate loader on the rooms page 
 Error Handelling and TOASTS

@@ -1,4 +1,5 @@
 import {io} from 'socket.io-client'
+const baseURL = process.env.REACT_APP_BACKEND_URL
 
 export const socketInit = () => {
     const options={
@@ -7,7 +8,7 @@ export const socketInit = () => {
         'timeout': 10000,
         'transports': ['websocket', 'polling'],
     }
-    const socket = io('http://localhost:5002',options)
+    const socket = io(baseURL,options)
     
     return socket
 }
