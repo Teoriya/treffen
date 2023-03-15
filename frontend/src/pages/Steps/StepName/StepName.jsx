@@ -23,6 +23,7 @@ const StepName = ({ onNext }) => {
                 <TextInput
                     value={fullname}
                     onChange={(e) => setFullname(e.target.value)}
+                    onKeyUp={(e)=>{if(e.code==='Enter'){nextStep()}}}
                 />
                 <p className={styles.paragraph}>
                     People use real names at Treffen :) !

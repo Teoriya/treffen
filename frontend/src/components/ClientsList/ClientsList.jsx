@@ -1,4 +1,5 @@
 import React from "react";
+import Avatar from "react-avatar";
 import styles from "./ClientsList.module.css";
 
 const ClientsList = ({ clients,provideRef}) => {
@@ -8,11 +9,11 @@ const ClientsList = ({ clients,provideRef}) => {
                     return (
                         <div className={styles.client} key={client._id}>
                             <div className={styles.userHead}>
-                                <img
+                                {client.avatar?<img
                                     className={styles.userAvatar}
                                     src={client.avatar}
-                                    alt=""
-                                />
+                                    alt="av-alt"
+                                />:<Avatar name={client.name} size="55px" round="27.5px" className={styles.userAvatar}/>}
                                 <audio
                                     autoPlay
                                     ref={(instance) => {

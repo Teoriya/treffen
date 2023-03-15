@@ -4,6 +4,7 @@ import styles from "./Navigation.module.css";
 import { logout } from "../../../http";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuth } from "../../../store/authSlice";
+import Avatar from "react-avatar";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,10 @@ const Navigation = () => {
       {auth?<div className={styles.navRight}>
         <h3>{user.name?user.name:""}</h3>
         <Link to="/" className={styles.navLink}>
-          <img className={styles.avatar} src={user.avatar ? user.avatar: "./images/monkey-avatar.png"} width="40" height="40" alt="avatar"/>
+          {
+            user.avatar?<img className={styles.avatar} src={user.avatar} width="40" height="40" alt="avatar"/>:<Avatar name={user.name} size="40px" round="20px"/>
+          }
+          
 
         </Link>
         <button onClick={logoutUser} className={styles.logout} >

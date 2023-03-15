@@ -9,13 +9,11 @@ code editor to work with web sockets
 Enter key implementation
 react env setup
 access token time to be changed
+custom Loader to be implemented everywhere -- a separate loader on the rooms page 
+Replace monkey with initial pfp
 
 Must DO- 
-Replace monkey with initial pfp
-custom Loader to be implemented everywhere -- a separate loader on the rooms page 
 Error Handelling and TOASTS
-pfp cropping and shit
-
 
 Maybe -
 OTP premium - no extra text toggle in environment variable
@@ -24,6 +22,7 @@ strict mode issue , check what cleanup/logic is reqd
 same file for ACTIONS ws
 work more on responsiveness
 a seperate config file for differrent configs like token expiry time, number of digits in otp etc etc
+pfp cropping and shit
 email login / sign in with DC,Google,Github etc
 integrating with DC Voice
 keeping the demerits of rtc in mind, speakers should be connected RTC and listeners through a server

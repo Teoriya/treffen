@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './RoomCard.module.css';
 import { useNavigate } from 'react-router-dom';
+import Avatar from 'react-avatar';
 
 const RoomCard = ({ room }) => {
     const navigate = useNavigate();
@@ -17,11 +18,13 @@ const RoomCard = ({ room }) => {
             >
                 <div className={styles.avatars}>
                     {room.speakers.map((speaker) => (
-                         <img
+                         speaker.avatar?<img
+                         className={styles.avatarImg}
                          key={speaker._id}
                          src={speaker.avatar}
                          alt="speaker-avatar"
-                     />
+                     />:<Avatar name={speaker.name } className={styles.avatarImg} size="40px" round="20px"/>
+                     //The react avatar would break on multiple speakers keep that in mind :P
                     ))}
                 </div>
                 <div className={styles.names}>

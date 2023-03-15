@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setAvatar } from '../../../store/activateSlice';
 import { activate } from '../../../http';
 import { setAuth } from '../../../store/authSlice';
+import Avatar from 'react-avatar';
 
 const StepAvatar = ({ onNext }) => {
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const StepAvatar = ({ onNext }) => {
         };
     }
     async function submit() {
-        if(!name || !avatar)return;
+        if(!name )return;
         setLoading(true);
         try {
             
@@ -45,11 +46,12 @@ const StepAvatar = ({ onNext }) => {
             <Card title={`Okay, ${name}`} icon="monkey-emoji">
                 <p className={styles.subHeading}>How’s this photo?</p>
                 <div className={styles.avatarWrapper}>
-                    <img
+                    {image==="/images/monkey-avatar.png"?<Avatar
                         className={styles.avatarImage}
-                        src={image}
-                        alt="avatar"
-                    />
+                        name={name}
+                    />:
+                    <img  className={styles.avatarImage}
+                    name={name} src={image} alt="speakar-av"/>}
                 </div>
                 <div>
                     <input
