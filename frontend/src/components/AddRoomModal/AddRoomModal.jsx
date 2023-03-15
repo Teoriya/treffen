@@ -3,6 +3,14 @@ import styles from './AddRoomModal.module.css';
 import TextInput from '../shared/TextInput/TextInput';
 import { createRoom as create } from '../../http';
 import { useNavigate } from 'react-router-dom';
+
+const roomMessage ={
+    open:"Start an open room, open to everyone",
+    social:"Start a private room. Friends feature is coming soon...",
+    private:"Start a private room, only people with the link can access."
+
+}
+
 const AddRoomModal = ({ onClose }) => {
     const navigate = useNavigate();
 
@@ -33,6 +41,7 @@ const AddRoomModal = ({ onClose }) => {
                         fullwidth="true"
                         value={topic}
                         onChange={(e) => setTopic(e.target.value)}
+                        onKeyUp = {(e)=>{if(e.code === 'Enter'){createRoom();}}}
                     />
                     <h2 className={styles.subHeading}>Room types</h2>
                     <div className={styles.roomTypes}>
@@ -51,7 +60,7 @@ const AddRoomModal = ({ onClose }) => {
                                 roomType === 'social' ? styles.active : ''
                             }`}
                         >
-                            <img src="/images/social.png" alt="social" />
+                            <img src="/images/social.png" alt="social-icon" />
                             <span>Social</span>
                         </div>
                         <div
@@ -66,7 +75,7 @@ const AddRoomModal = ({ onClose }) => {
                     </div>
                 </div>
                 <div className={styles.modalFooter}>
-                    <h2>Start a room, open to everyone</h2>
+                    <h2>{roomMessage[roomType]}</h2>
                     <button
                         onClick={createRoom}
                         className={styles.footerButton}

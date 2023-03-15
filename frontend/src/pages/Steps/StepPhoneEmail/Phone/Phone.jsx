@@ -23,12 +23,19 @@ const Phone = ({ onNext }) => {
             console.log(error);    
         } 
     }
+    const handleInputEnter = (e) => {
+        if (e.code === 'Enter') {
+            submit();
+        }
+    };
 
     return (
         <Card title="Enter you phone number" icon="phone">
             <TextInput
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                onKeyUp={handleInputEnter}
+                
             />
             <div>
                 <div className={styles.actionButtonWrap}>
