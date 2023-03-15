@@ -7,6 +7,7 @@ import styles from './StepOtp.module.css';
 import { verifyOtp } from '../../../http';
 import { setAuth } from '../../../store/authSlice'
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
 
 const Email = ({ onNext }) => {
     const [otp, setOtp] = useState('');
@@ -23,7 +24,7 @@ const Email = ({ onNext }) => {
             // console.log(data);
             // onNext();
         } catch (error) {
-            console.log(error);
+            toast.error("Invalid OTP.")
         }
         finally {
             setLoading(false);

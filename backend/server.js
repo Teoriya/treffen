@@ -9,9 +9,11 @@ const server = require('http').createServer(app);
 
 app.use('/public',express.static('public'))
 
+const origin = process.env.CORS_ORIGIN.split(',')
+
 const cors = require('cors');
 const corsOptions = {
-    origin: process.env.CORS_ORIGIN,
+    origin,
     credentials:true,
     optionsSuccessStatus: 200
 }
