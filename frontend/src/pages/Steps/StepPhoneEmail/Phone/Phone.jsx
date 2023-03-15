@@ -7,20 +7,22 @@ import styles from '../StepPhoneEmail.module.css';
 import { sendOtp } from '../../../../http';
 import { useDispatch } from 'react-redux';
 import { setOtp } from '../../../../store/authSlice';
+import { toast } from 'react-hot-toast';
 
 const Phone = ({ onNext }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const dispatch = useDispatch();
     async function submit() {
         try {
-            if(!phoneNumber || phoneNumber.length !== 10)return;
+            if(phoneNumber.length !==10 && !isNaN(phoneNumber) && phoneNumber%1===0)return toast.error('Invalid Phone Number') ;
             const {data} = await sendOtp({ phone: phoneNumber });
+            toast.success("OTP sent successfully.")
             // console.log(data)
             dispatch(setOtp({ phone: data.phone, hash: data.hash ,expires: data.expires}));
             onNext();
             
         } catch (error) {
-            console.log(error);    
+            toast.error(`Invalid Phone Number`) 
         } 
     }
     const handleInputEnter = (e) => {
@@ -33,7 +35,7 @@ const Phone = ({ onNext }) => {
         <Card title="Enter you phone number" icon="phone">
             <TextInput
                 value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={(e) => {if(e.target.value.length <= 10 && !isNaN(e.target.value) && e.target.value%1===0)setPhoneNumber(e.target.value)}}
                 onKeyUp={handleInputEnter}
                 
             />

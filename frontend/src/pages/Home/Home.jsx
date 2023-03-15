@@ -15,7 +15,7 @@ const Home = () => {
             <Card title="Welcome to Treffen!" icon="logo">
                 <p className={styles.text}>
                     We’re working hard to get Treffen ready for everyone!
-                    While we wrap up the finishing youches, we’re adding people
+                    While we wrap up the finishing touches, we’re adding people
                     gradually to make sure nothing breaks
                 </p>
                 <div>
@@ -23,7 +23,7 @@ const Home = () => {
                 </div>
                 <div className={styles.signinWrapper}>
                     <span className={styles.hasInvite}>
-                        Have an invite text?
+                        Have a phone number? Try it Out.
                     </span>
                 </div>
             </Card>

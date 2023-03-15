@@ -30,7 +30,7 @@ const webRTCListeners =  (socket,io) =>{
             socket.emit(ACTIONS.REMOVE_PEER,{peerId:clientId,userId:socketUserMap[clientId]?._id})
         })
         socket.leave(roomId);
-        console.log((io.sockets.adapter.rooms))
+        // console.log((io.sockets.adapter.rooms))
             
         }) ;
         delete socketUserMap[socket.id]

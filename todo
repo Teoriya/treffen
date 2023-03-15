@@ -11,9 +11,9 @@ react env setup
 access token time to be changed
 custom Loader to be implemented everywhere -- a separate loader on the rooms page 
 Replace monkey with initial pfp
+Error Handelling and TOASTS
 
 Must DO- 
-Error Handelling and TOASTS
 
 Maybe -
 OTP premium - no extra text toggle in environment variable
