@@ -1,6 +1,6 @@
 const { ACTIONS } = require('../../frontend/src/socket/actionsEditor') // mayhave to change if both frontend and backend are deployed on different servers
 const {ChangeSet, Text} = require("@codemirror/state")
-const {cppBoilerPlate} = require('./boilerPlate')
+const {cppBoilerPlate} = require('../utils/boilerPlate.utils')
 
 rooms = {};
 

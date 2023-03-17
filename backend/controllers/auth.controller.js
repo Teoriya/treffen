@@ -3,8 +3,11 @@ const jwtUtils = require("../utils/jwt.utils");
 const UserService = require("../services/user.service");
 const TokenService = require("../services/token.service");
 const UserDto = require("../dtos/user.dto");
+const TTL = 5 * 60 * 1000; //5min
+let phoneNumberOTPCooldownMap={}
 
 class AuthController {
+  
   async sendOtp(req, res) {
     const { phone } = req.body;
     if (!phone || phone.length !== 10 || isNaN(phone)) {
@@ -13,13 +16,21 @@ class AuthController {
         .json({ message: "10 Digit Phone number is required" });
     }
     const otp = await otpUtils.generateOtp();
+    if(phoneNumberOTPCooldownMap[phone]>Date.now()){
+      const retryAfter = (phoneNumberOTPCooldownMap[phone] - Date.now())/1000
+      res.setHeader("Retry-After",retryAfter)
+      return res.status(429).json({ message: `Please wait before sending another request.`,retryAfter});
+    }
     const otpSent = await otpUtils.sendOtp(phone, otp);
-    const ttl = 5 * 60 * 1000; //5min
-    const expires = Date.now() + ttl;
+    const expires = Date.now() + TTL;
     const data = `${phone}.${otp}.${expires}`;
     const hashedOtp = await otpUtils.hashOtp(data);
     if (otpSent) {
       // console.log('OTP sent successfully');
+      phoneNumberOTPCooldownMap[phone]=(Date.now()+TTL)
+      setInterval((phone) => {
+        delete phoneNumberOTPCooldownMap[phone]
+      }, TTL,phone);
       return res.status(200).json({
         message: "OTP sent successfully",
         hash: hashedOtp,

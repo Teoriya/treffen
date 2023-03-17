@@ -12,12 +12,16 @@ access token time to be changed
 custom Loader to be implemented everywhere -- a separate loader on the rooms page 
 Replace monkey with initial pfp
 Error Handelling and TOASTS
+backend OTP rate limitter for indivisual phone number
+https and http automatic
 
 Must DO- 
+Mute
+Compiler
+
 
 Maybe -
 OTP premium - no extra text toggle in environment variable
-Compile the code in editor in C++; 👀
 strict mode issue , check what cleanup/logic is reqd
 same file for ACTIONS ws
 work more on responsiveness
