@@ -35,7 +35,7 @@ try {
         key: fs.readFileSync('./ssl_certificates/private.key'),
         cert: fs.readFileSync('./ssl_certificates/certificate.crt')
     };
-    const sslPort = process.env.PORT_HTTPS || 8443;
+    const sslPort = process.env.PORT || 8443;
     const httpsServer = require('https').createServer(httpsOptions, app)
     require("./socket")(httpsServer);
     httpsServer.listen(sslPort, () => {
@@ -43,7 +43,7 @@ try {
     })
 } catch (error) {
     console.log("Couldnt find ssl information, running an http server instead.")
-    const port = process.env.PORT_HTTP || 5000;
+    const port = process.env.PORT || 5000;
     const server = require('http').createServer(app);
     require("./socket")(server);
     server.listen(port,() => {
