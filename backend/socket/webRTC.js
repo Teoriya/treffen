@@ -21,6 +21,10 @@ const webRTCListeners =  (socket,io) =>{
         io.to(peerId).emit(ACTIONS.SDP,{peerId:socket.id,SDP})
     })
 
+    socket.on(ACTIONS.CLIENT_MUTE,({userId,muteState,roomId})=>{
+        io.to(roomId).emit(ACTIONS.CLIENT_MUTE,{userId,muteState})})
+        
+
     const leaveRoom = ()=>{
         const {rooms} = socket;
         Array.from(rooms || []).forEach((roomId)=>{

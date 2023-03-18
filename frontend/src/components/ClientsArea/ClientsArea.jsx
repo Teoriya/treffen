@@ -8,7 +8,7 @@ const Display = {
     editor:Editor
 }
 
-const ClientArea = ({ clients, room, provideRef, handManualLeave ,socketRef}) => {
+const ClientArea = ({ clients, room, provideRef, handManualLeave ,socketRef ,handleMute}) => {
     const [type,setType] = useState("list");
     const Component = Display[type];
 
@@ -43,7 +43,7 @@ const ClientArea = ({ clients, room, provideRef, handManualLeave ,socketRef}) =>
                 </div>
             </div>
             
-            <Component clients={clients} provideRef={provideRef} socket={socketRef.current} roomId={room.id}/>
+            <Component clients={clients} provideRef={provideRef} socket={socketRef.current} roomId={room.id} handleMute={handleMute}/>
             
 
             

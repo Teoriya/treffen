@@ -7,4 +7,5 @@ module.exports.ACTIONS = {
     RELAY_SDP: 'relay-sdp',
     SDP: 'sdp',
     REMOVE_PEER: 'remove-peer',
+    CLIENT_MUTE: 'client-mute',
 };

@@ -18,7 +18,7 @@ const Email = ({ onNext }) => {
         setLoading(true);
         try {
             const finalOtp = input.finalOtp ? input.finalOtp : otp;
-            if (!finalOtp || finalOtp.length !== 6) return;
+            if (!finalOtp || finalOtp.length !== 6) throw new Error("Invalid OTP.");
             const { data } = await verifyOtp({ otp:finalOtp, phone, hash, expires });
             dispatch(setAuth(data));
             // console.log(data);
@@ -46,6 +46,7 @@ const Email = ({ onNext }) => {
                     <TextInput
                         value={otp}
                         onChange={handleOTPFieldChange}
+                        onKeyUp={(event)=> {if(event.code==="Enter")submit();}}
                     />
                     <div>
                         <div className={styles.actionButtonWrap}>

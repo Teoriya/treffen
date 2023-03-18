@@ -14,7 +14,7 @@ const Phone = ({ onNext }) => {
     const dispatch = useDispatch();
     async function submit() {
         try {
-            if(phoneNumber.length !==10 && !isNaN(phoneNumber) && phoneNumber%1===0)return toast.error('Invalid Phone Number') ;
+            if(phoneNumber.length !==10 && !isNaN(phoneNumber) && phoneNumber%1===0)throw new Error('Invalid Phone Number')
             const {data} = await sendOtp({ phone: phoneNumber });
             toast.success("OTP sent successfully.")
             // console.log(data)
@@ -22,7 +22,17 @@ const Phone = ({ onNext }) => {
             onNext();
             
         } catch (error) {
-            toast.error(`Invalid Phone Number`) 
+            console.log(error.message)
+            switch(error.message){
+                case "Invalid Phone Number":
+                    toast.error("Invalid Phone Number")
+                    break;
+                case "Request failed with status code 429":
+                    toast.error("Too many otp requests. Please try again later.")
+                    break;
+                default:
+                    toast.error(`We couldn't send you an OTP. Please try again later.`) 
+            }
         } 
     }
     const handleInputEnter = (e) => {

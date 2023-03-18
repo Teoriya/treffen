@@ -10,14 +10,20 @@ export const useWebRTC = (roomId, user) => {
     const socket = useRef(null); // the socket connection
     const localMediaStream = useRef(null);  // local media capture is storeed in this reference
     const rtcConnections = useRef({});// socket ids mapped to rtc conn's
+    const clientsRef = useRef([])
+
+    useEffect(()=>{
+        clientsRef.current = clients
+    },[clients])
 
     const addNewClient = useCallback(
         (newClient, cb) => {
-            const alreadyExists = clients.find((client) => client._id === newClient._id)
+            const alreadyExists = clientsRef.current.find((client) => client._id === newClient._id)
             if (!alreadyExists) {
+                
                 setClients((existingClients) => [...existingClients, newClient], cb)
             }
-        }, [clients, setClients]
+        }, [clientsRef, setClients]
     )
 
     //initialize Socket
@@ -165,9 +171,27 @@ export const useWebRTC = (roomId, user) => {
     }, [setClients])
 
 
+    //handling mute 
+
+    useEffect(() => {
+        const handleRemoteClientMute = ({ userId, muteState }) => {
+            setClients((existingClients) => existingClients.map(client => client._id === userId ? { ...client, muted: muteState } : client))
+        }
+        socket.current.on(ACTIONS.CLIENT_MUTE, handleRemoteClientMute)
+    }, [setClients])
+        
+
+
+
+    const handleMute = (userId,muteState)=>{
+        // console.log(localMediaStream.current.getAudioTracks()[0])
+        localMediaStream.current.getAudioTracks()[0].enabled = !muteState;
+        socket.current.emit(ACTIONS.CLIENT_MUTE,{userId,muteState,roomId})
+    }
+    
     const provideRef = (instance, userId) => {
         audioElements.current[userId] = instance;
     };
 
-    return { clients, provideRef , socketRef:socket}
+    return { clients, provideRef , socketRef:socket, handleMute}
 }
