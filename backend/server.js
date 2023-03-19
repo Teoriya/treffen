@@ -39,7 +39,7 @@ try {
     const httpsServer = require('https').createServer(httpsOptions, app)
     require("./socket")(httpsServer);
     httpsServer.listen(sslPort, () => {
-        console.log(`HTTPS Server is running on port ${port}`);
+        console.log(`HTTPS Server is running on port ${sslPort}`);
     })
 } catch (error) {
     console.log("Couldnt find ssl information, running an http server instead.")
