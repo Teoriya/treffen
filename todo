@@ -18,6 +18,7 @@ Mute
 
 Must DO- 
 Compiler
+If no audio device is present , or if user denies permission, send a toast and redirect to rooms page
 
 
 Maybe -
