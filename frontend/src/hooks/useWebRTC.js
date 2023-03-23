@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { useStateCallback } from "./useStateCallback";
 import { socketInit } from "../socket";
 import { ACTIONS } from "../socket/actionsWebRTC";
+import { toast } from "react-hot-toast"
 import freeice from "freeice";
 
 export const useWebRTC = (roomId, user) => {
@@ -12,15 +13,15 @@ export const useWebRTC = (roomId, user) => {
     const rtcConnections = useRef({});// socket ids mapped to rtc conn's
     const clientsRef = useRef([])
 
-    useEffect(()=>{
+    useEffect(() => {
         clientsRef.current = clients
-    },[clients])
+    }, [clients])
 
     const addNewClient = useCallback(
         (newClient, cb) => {
             const alreadyExists = clientsRef.current.find((client) => client._id === newClient._id)
             if (!alreadyExists) {
-                
+
                 setClients((existingClients) => [...existingClients, newClient], cb)
             }
         }, [clientsRef, setClients]
@@ -30,8 +31,10 @@ export const useWebRTC = (roomId, user) => {
     useEffect(() => {
         socket.current = socketInit();
         return () => {
-            localMediaStream.current.getTracks().forEach(track => track.stop())
-            socket.current.emit(ACTIONS.LEAVE_ROOM, {})
+            if (localMediaStream.current) {
+                localMediaStream.current.getTracks().forEach(track => track.stop())
+                socket.current.emit(ACTIONS.LEAVE_ROOM, {})
+            }
         }
     }, []);
 
@@ -61,7 +64,7 @@ export const useWebRTC = (roomId, user) => {
                     else {
                         const inteval = setInterval(() => {
                             if (audioElements.current[remoteUser._id]) {
-                    
+
                                 audioElements.current[remoteUser._id].srcObject = remoteStream;
                                 clearInterval(inteval);
                             }
@@ -100,7 +103,11 @@ export const useWebRTC = (roomId, user) => {
     //capture media
     useEffect(() => {
         const startCapture = async () => {
-            localMediaStream.current = await navigator.mediaDevices.getUserMedia({ audio: true });
+            try {
+                localMediaStream.current = await navigator.mediaDevices.getUserMedia({ audio: true });
+            } catch (error) {
+                toast.error("Please allow microphone access to continue.");
+            }
         }
         startCapture().then(() => {
             addNewClient(user, () => {
@@ -179,19 +186,19 @@ export const useWebRTC = (roomId, user) => {
         }
         socket.current.on(ACTIONS.CLIENT_MUTE, handleRemoteClientMute)
     }, [setClients])
-        
 
 
 
-    const handleMute = (userId,muteState)=>{
+
+    const handleMute = (userId, muteState) => {
         // console.log(localMediaStream.current.getAudioTracks()[0])
         localMediaStream.current.getAudioTracks()[0].enabled = !muteState;
-        socket.current.emit(ACTIONS.CLIENT_MUTE,{userId,muteState,roomId})
+        socket.current.emit(ACTIONS.CLIENT_MUTE, { userId, muteState, roomId })
     }
-    
+
     const provideRef = (instance, userId) => {
         audioElements.current[userId] = instance;
     };
 
-    return { clients, provideRef , socketRef:socket, handleMute}
+    return { clients, provideRef, socketRef: socket, handleMute }
 }
