@@ -15,25 +15,24 @@ Error Handelling and TOASTS
 backend OTP rate limitter for indivisual phone number
 https and http automatic
 Mute
+If no audio device is present , or if user denies permission, send a toast and redirect to rooms page //redirect part not implemented yet
 
 Must DO- 
 Compiler
-If no audio device is present , or if user denies permission, send a toast and redirect to rooms page
-
+clear the rooms code from server when room is deleted and write room deletion code
+synced cursor and selection
+oauth sign in 
+refactor useWebRTC hook
+work more on responsiveness
 
 Maybe -
 OTP premium - no extra text toggle in environment variable
 strict mode issue , check what cleanup/logic is reqd
 same file for ACTIONS ws
-work more on responsiveness
 a seperate config file for differrent configs like token expiry time, number of digits in otp etc etc
 pfp cropping and shit
 frontend avatar issues in multpile speakers when 
-Backend ff's up when invalid DB
-email login / sign in with DC,Google,Github etc
 integrating with DC Voice
 keeping the demerits of rtc in mind, speakers should be connected RTC and listeners through a server
 intervies, code compilation , inteviewee/interviewer
-encrypt code data for privacy , maybe
-db persistence of code for each room 
 Improve authentication routing to route to the original requested link

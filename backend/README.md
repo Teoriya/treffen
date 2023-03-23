@@ -1,37 +1,5 @@
-
-
-# Backend for  [Treffen](subpro/subtext.md)
-
-We had interviews for one of the coding clubs I was a part of. One of the major problems we faced was internet connectivity issues when the interviewees shared their screen due to poor internet conenectivity. So to solve this problem I thought of combining a group voice call with a lightwieght shared code editor accesible through the web browser.
-
-***Treffen helps a group of user to connect to each other on voice and they have a real time shared code editor while using very less bandwidth.***
-
-
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file. You can also find the same in demo.env int the backend folder.
-
-`OTP_SECRET` - Secret key used to generate one-time passwords (OTP) for user authentication.(Can be any random string)
-
-`JWT_SECRET_ACCESS` - Secret key used to generate and verify access tokens for user authentication.(Can be any random string)
-
-`JWT_SECRET_REFRESH`  - Secret key used to generate and verify refresh tokens for user authentication.(Can be any random string)
-
-`SMS_API_KEY` -  API key used to authenticate requests sent to [fast2sms](https://www.fast2sms.com/) SMS gateway service. 
-
-`CORS_ORIGIN` - Allowed origins for [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) requests.
-
-`MONGO_URI` - [Connection string](https://www.mongodb.com/docs/manual/reference/connection-string/) required to connect to a [MongoDB](https://www.mongodb.com/) database.
-
-
-`PORT` -  [Port](https://developer.mozilla.org/en-US/docs/Glossary/Port) on which the backend API should listen for incoming requests. (If not provided defaults to port 5000)
-
-`BASE_URL` - : Base URL for the backend API, typically the domain name or IP address of the server where the API is hosted. (`http://localhost` if you are running you project locally)
-
-
-
-
-## Running the project.
+#Backend for Treffen
+## Running the backend.
 
 Clone the project
 
@@ -62,10 +30,78 @@ Start the server for development
 ```
 
 Start the server for deployment
-*Note* - Put the private.key and certificate.crt in `{project root}/backend/ssl_certificates` to have an ssl connection.
 ```bash
   npm start
 ```
+
+
+## Folder Structure
+### ./backend/
+
+    |-- .env                        (stores the environment variables)
+    |-- .gitignore                  (gitignore for version control)
+    |-- demo.env                    (dummy data having all the environment variables)
+    |-- package-lock.json           (stores an exact, versioned dependency tree)
+    |-- package.json                (manifest file of Node.js project, contains the metadata of the project)
+    |-- README.md                   (This file , which contains the documentation)
+    |-- server.js                   (The entry file of the backend)
+    |-- controllers                 (This folder contains all the controllers)
+    |   |-- activate.controller.js  (controllers related to activation)
+    |   |-- auth.controller.js      (controllers related to authentication)
+    |   |-- room.controller.js      (controllers related to rooms)
+    |-- dtos                        (Data Transfer Objects)
+    |   |-- room.dto.js             (room DTO)
+    |   |-- user.dto.js             (user DTO)
+    |-- middlewares                 (Express middlewares)
+    |   |-- auth.middleware.js      (Authentication Middleware)
+    |-- models                      (Mongo DB Models)
+    |   |-- refresh.model.js        (Model for storing refresh tokens)
+    |   |-- room.model.js           (Model for storing room data)
+    |   |-- user.model.js           (Model for storing user data)
+    |-- routes                      (Contains all the router which will handle the incoming routes)
+    |   |-- room.routes.js          (Router for routing to respective handlers for all room related routes)
+    |   |-- user.routes.js          (Router for routing to respective handlers for all user related routes)
+    |-- services                    (Service layer above the DB)
+    |   |-- room.service.js         (Room Service Layer)
+    |   |-- token.service.js        (Token Service Layer)
+    |   |-- user.service.js         (User Service Layer)
+    |-- socket                      (All logic related to Sockets.io)
+    |   |-- actions.js              (A map of actions to strings of all events that will be emitted by the websocket)
+    |   |-- codeEditor.js           (All the code editor related websocket logic)
+    |   |-- index.js                (Entry file for the sockets logic, connection is initialized here)
+    |   |-- webRTC.js               (All the Web RTC related websocket logic)
+    |-- ssl_certificates            (Folder to hold the ssl certificates)
+    |   |-- demo.certificate.crt    (dummfile to show how to store certificate.crt file)
+    |   |-- demo.private.key        (dummfile to show how to store private.key file)
+    |-- utils                       (utilities for the project)
+        |-- boilerPlate.utils.js    (boilerplate code for new room data)
+        |-- db.utils.js             (utility to initialize the DB connection)
+        |-- jwt.utils.js            (JWT utilites to create and handle JWT tokes)
+        |-- otp.utils.js            (Fast2sms and crypto utilites to generate send and hash otps)
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file. You can also find the same in demo.env int the backend folder.
+
+`OTP_SECRET` - Secret key used to generate one-time passwords (OTP) for user authentication.(Can be any random string)
+
+`JWT_SECRET_ACCESS` - Secret key used to generate and verify access tokens for user authentication.(Can be any random string)
+
+`JWT_SECRET_REFRESH`  - Secret key used to generate and verify refresh tokens for user authentication.(Can be any random string)
+
+`SMS_API_KEY` -  API key used to authenticate requests sent to [fast2sms](https://www.fast2sms.com/) SMS gateway service. 
+
+`CORS_ORIGIN` - Allowed origins for [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) requests.
+
+`MONGO_URI` - [Connection string](https://www.mongodb.com/docs/manual/reference/connection-string/) required to connect to a [MongoDB](https://www.mongodb.com/) database.
+
+
+`PORT` -  [Port](https://developer.mozilla.org/en-US/docs/Glossary/Port) on which the backend API should listen for incoming requests. (If not provided defaults to port 5000)
+
+`BASE_URL` - : Base URL for the backend API, typically the domain name or IP address of the server where the API is hosted. (`http://localhost` if you are running you project locally)
+
+
 
 
 # API References
@@ -289,4 +325,3 @@ Start the server for deployment
   }
 }
 ```
-
