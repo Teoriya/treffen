@@ -17,11 +17,6 @@ const Navigation = () => {
     display: "flex",
     alignItems: "center",
   };
-
-  const logoText = {
-    marginLeft: "10px",
-  };
-
   const logoutUser = async () => {
     try {
       await logout();
