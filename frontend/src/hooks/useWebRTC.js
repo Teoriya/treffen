@@ -47,7 +47,7 @@ export const useWebRTC = (roomId, user) => {
             };
             const currentRTC = new RTCPeerConnection({
                 iceServers: [{
-                    urls:["stun:turn.example.com", "turn:turn.example.com"],
+                    urls:["stun:relay1.expressturn.com:3478", "turn:relay1.expressturn.com:3478"],
                     username:"ef2Q3G8FJYJ6QPV9PM",
                     credential:"rTidmAC4aViKXCbe"
                 }]
