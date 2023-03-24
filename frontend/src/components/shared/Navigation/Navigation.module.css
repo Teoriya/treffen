@@ -10,6 +10,10 @@
     cursor: pointer;
 }
 
+.logoicon {
+    height: 80px;
+    margin-right: 10px;
+}
 .navRight {
     display: flex;
     align-items: center;
