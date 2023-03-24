@@ -3,7 +3,7 @@ import { useStateCallback } from "./useStateCallback";
 import { socketInit } from "../socket";
 import { ACTIONS } from "../socket/actionsWebRTC";
 import { toast } from "react-hot-toast"
-import freeice from "freeice";
+// import freeice from "freeice";
 
 export const useWebRTC = (roomId, user) => {
     const [clients, setClients] = useStateCallback([]); // array of all user
@@ -46,7 +46,11 @@ export const useWebRTC = (roomId, user) => {
                 return console.warn("RTC connection already Exists", peerId,)
             };
             const currentRTC = new RTCPeerConnection({
-                iceServers: freeice()
+                iceServers: [{
+                    urls:["stun:turn.example.com", "turn:turn.example.com"],
+                    username:"ef2Q3G8FJYJ6QPV9PM",
+                    credential:"rTidmAC4aViKXCbe"
+                }]
             });
             rtcConnections.current[peerId] = currentRTC;
             currentRTC.onicecandidate = (event) => {
